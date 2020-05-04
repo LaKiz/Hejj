@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic; 		//Allows us to use Lists.
 using Random = UnityEngine.Random; 		//Tells Random to use the Unity Engine random number generator.
 
-namespace Completed
+//namespace Completed
 	
-{
+//{
 	
 	public class BoardManager : MonoBehaviour
 	{
@@ -111,7 +111,7 @@ namespace Completed
 		void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum)
 		{
 			//Choose a random number of objects to instantiate within the minimum and maximum limits
-			int objectCount = Random.Range (minimum, maximum+1);
+			int objectCount = Random.Range (minimum, maximum + 1);
 			
 			//Instantiate objects until the randomly chosen limit objectCount is reached
 			for(int i = 0; i < objectCount; i++)
@@ -153,4 +153,4 @@ namespace Completed
 			Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
 		}
 	}
-}
+//}
