@@ -5,6 +5,7 @@ public class GameMana : MonoBehaviour {
 
     //public static GameMana instance = null;
 
+    public static GameMana instance = null;
     public BoardManager boardScript;
 
     private int level = 3;
@@ -13,6 +14,12 @@ public class GameMana : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
         boardScript = GetComponent<BoardManager>();
         InitGame();
     }
