@@ -21,16 +21,16 @@ namespace Completed
 		{
 			//Register this enemy with our instance of GameManager by adding it to a list of Enemy objects. 
 			//This allows the GameManager to issue movement commands.
-			GameManager.instance.AddEnemyToList (this);
+		//	GameMana.instance.AddEnemyToList (this);
 			
 			//Get and store a reference to the attached Animator component.
-			animator = GetComponent<Animator> ();
+		//	animator = GetComponent<Animator> ();
 			
 			//Find the Player GameObject using it's tag and store a reference to its transform component.
-			target = GameObject.FindGameObjectWithTag ("Player").transform;
+		//	target = GameObject.FindGameObjectWithTag ("Player").transform;
 			
 			//Call the start function of our base class MovingObject.
-			base.Start ();
+		//	base.Start ();
 		}
 		
 		
