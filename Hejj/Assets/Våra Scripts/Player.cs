@@ -144,11 +144,11 @@ namespace Completed
 			RaycastHit2D hit;
 			
 			//If Move returns true, meaning Player was able to move into an empty space.
-		/*	if (Move (xDir, yDir, out hit)) 
+			if (Move (xDir, yDir, out hit)) 
 			{
 				//Call RandomizeSfx of SoundManager to play the move sound, passing in two audio clips to choose from.
-				SoundManager.instance.RandomizeSfx (moveSound1, moveSound2);
-			} */
+			//	SoundManager.instance.RandomizeSfx (moveSound1, moveSound2);
+			} 
 			
 			//Since the player has moved and lost food points, check if the game has ended.
 			CheckIfGameOver ();
