@@ -169,7 +169,7 @@ namespace Completed
 			hitWall.DamageWall (wallDamage);
 			
 			//Set the attack trigger of the player's animation controller in order to play the player's attack animation.
-			animator.SetTrigger ("playerChop");
+			animator.SetTrigger ("playerAttack");
 		}  
 		
 		
