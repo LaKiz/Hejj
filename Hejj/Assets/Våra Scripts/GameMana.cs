@@ -1,20 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 using Completed;
 
-public class GameMana : MonoBehaviour
-{
+public class GameMana : MonoBehaviour {
 
+    public float levelStartDelay = 2f;
     public float turnDelay = 0.1f;
     public static GameMana instance = null;
     public BoardManager boardScript;
     public int playerFoodPoints = 100;						//Starting value for Player food points.
     [HideInInspector] public bool playersTurn = true;		//Boolean to check if it's players turn, hidden in inspector but public.
 
-    private int level = 3;
+    private Text levelText;
+    private GameObject levelImage;
+    private int level = 1;
     private List<Enemy> enemies;
     private bool enemiesMoving;
+    private bool doingSetup;
 
 
     // Use this for initialization
@@ -31,16 +36,37 @@ public class GameMana : MonoBehaviour
         InitGame();
     }
 
+    private void OnLevelWasLoaded(int index)
+    {
+        level++;
+
+        InitGame();
+    }
+
     void InitGame()
     {
+        doingSetup = true;
+
+        levelImage = GameObject.Find("LevelImage");
+        levelText = GameObject.Find("LevelText").GetComponent<Text>();
+        levelText.text = "Day " + level;
+        levelImage.SetActive(true);
+        Invoke("HideLevelImage", levelStartDelay);
         enemies.Clear();
         boardScript.SetupScene(level);
+    }
+
+    private void HideLevelImage()
+    {
+        levelImage.SetActive(false);
+        doingSetup = false;
     }
 
     //GameOver is called when the player reaches 0 food points
     public void GameOver()
     {
-        //Disable this GameManager.
+        levelText.text = "After " + level + " days, you starved.";
+        levelImage.SetActive(true);
         enabled = false;
     }
 
@@ -48,9 +74,8 @@ public class GameMana : MonoBehaviour
     void Update()
     {
         //Check that playersTurn or enemiesMoving or doingSetup are not currently true.
-        if (playersTurn || enemiesMoving)
+        if (playersTurn || enemiesMoving || doingSetup)
 
-            //If any of these are true, return and do not start MoveEnemies.
             return;
 
         //Start moving enemies.
